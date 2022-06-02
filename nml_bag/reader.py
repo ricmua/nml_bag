@@ -214,7 +214,7 @@ class Reader(SequentialReader):
         if not getattr(self, '_records', None): self._records = list(self)
         return self._records
     
-    def set_filter(topics):
+    def set_filter(self, topics):
         """ Set the topic filter.
         
         Parameters
