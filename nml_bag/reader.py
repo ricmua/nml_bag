@@ -141,8 +141,8 @@ class Reader(SequentialReader):
     
     def __init__(self, filepath=None, topics=[], **kwargs):
         super().__init__(**kwargs) # SequentialReader
-        if topics: self.set_filter(topics)
         if filepath: self.open(filepath)
+        if topics: self.set_filter(topics)
         
     def open(self, filepath, storage_id='sqlite3', serialization_format='cdr'):
         """ Open a bag file.
