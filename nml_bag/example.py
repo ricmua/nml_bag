@@ -68,7 +68,7 @@ def main(bag_name='bag_test', topic='test'):
     write_bag_file(bag_path, topic=topic)
     
     # Initialize a bag reader.
-    reader = Reader(f'{bag_path}{sep}{bag_name}_0.db3')
+    reader = Reader(f'{bag_path}{sep}{bag_name}_0.db3', storage_id='sqlite3', serialization_format='cdr')
     
     # Print the topics.
     print(f'The bag contains the following topics:')

@@ -124,7 +124,7 @@ class Reader(SequentialReader):
     >>> writer.write('test_topic', 
     ...              serialize_message(message), 
     ...              clock.now().nanoseconds)
-    >>> reader = Reader(f'{bag_path}{sep}bag_test_0.db3')
+    >>> reader = Reader(f'{bag_path}{sep}bag_test_0.db3', storage_id='sqlite3', serialization_format='cdr')
     >>> reader.topics
     ['test_topic']
     >>> reader.type_map
@@ -139,9 +139,9 @@ class Reader(SequentialReader):
                 #write-the-python-node
     """
     
-    def __init__(self, filepath=None, topics=[], **kwargs):
+    def __init__(self, filepath=None, topics=[], storage_id='sqlite3', serialization_format='cdr', **kwargs):
         super().__init__(**kwargs) # SequentialReader
-        if filepath: self.open(filepath)
+        if filepath: self.open(filepath, storage_id=storage_id, serialization_format=serialization_format)
         if topics: self.set_filter(topics)
         
     def open(self, filepath, storage_id='sqlite3', serialization_format='cdr'):
@@ -151,8 +151,10 @@ class Reader(SequentialReader):
         ----------
         filepath : str
             Filesystem path to the bag file to open.
-        storage_id
-        serialization_format
+        storage_id: str
+            The storage plugin to use. See the ROS2 bag documentation for more information.
+        serialization_format: str
+            The serialization format to use. See the ROS2 bag documentation for more information.
         
         Notes
         -----
@@ -166,9 +168,9 @@ class Reader(SequentialReader):
         .. _CDR: https://en.wikipedia.org/wiki/Common_Data_Representation
 
         """
-        storage_options = StorageOptions(uri=filepath, storage_id='sqlite3')
-        converter_options = ConverterOptions(input_serialization_format='cdr',
-                                             output_serialization_format='cdr')
+        storage_options = StorageOptions(uri=filepath, storage_id=storage_id)
+        converter_options = ConverterOptions(input_serialization_format=serialization_format,
+                                             output_serialization_format=serialization_format)
         super().open(storage_options, converter_options)
         #self._records = list(self)
         
