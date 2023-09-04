@@ -32,5 +32,5 @@ the ROS2 API be used for decoding bag files wherever possible.
 
 from .reader import Reader
 
-__version__ = '1.0.0'
+__version__ = '1.0.1'
 

@@ -29,7 +29,7 @@ def write_bag_file(bag_path, topic='test'):
     # Open the writer.
     storage_options = rosbag2_py.StorageOptions(uri=bag_path,
                                                 max_cache_size=0,
-                                                storage_id='sqlite3')
+                                                storage_id='mcap')
     converter_options = rosbag2_py.ConverterOptions('', '')
     writer = rosbag2_py.SequentialWriter()
     writer.open(storage_options, converter_options)
@@ -68,7 +68,9 @@ def main(bag_name='bag_test', topic='test'):
     write_bag_file(bag_path, topic=topic)
     
     # Initialize a bag reader.
-    reader = Reader(f'{bag_path}{sep}{bag_name}_0.db3', storage_id='sqlite3', serialization_format='cdr')
+    reader = Reader(f'{bag_path}{sep}{bag_name}_0.db3', 
+                    storage_id='mcap', 
+                    serialization_format='cdr')
     
     # Print the topics.
     print(f'The bag contains the following topics:')

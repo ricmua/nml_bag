@@ -103,22 +103,24 @@ And the output is similar to:
 ### A note about serialization and storage formats
 
 By [default][rosbag2_serialization], ROS2 messages are serialized using the 
-[Common Data Representation (CDR)][cdr] standard and stored using the 
-[sqlite 3][sqlite] standard.
+[Common Data Representation (CDR)][cdr] standard and stored using [MCAP] -- 
+"an open source container file format for multimodal log data". Formerly, data 
+were stored using [sqlite 3][sqlite].
 
-Note: Although the [sqlite3][sqlite3] package is part of the standard distribution of 
-Python 3 -- and it can be used to interpret bag files -- it is recommended that 
-the ROS2 API be used for decoding bag files wherever possible.
+Note: Although the [sqlite3][sqlite3] package is part of the standard 
+distribution of Python 3 -- and it can be used to interpret bag files -- it is 
+recommended that the ROS2 API be used for decoding bag files wherever possible.
 
+
+<!-- References -------------------------------------------------------------->
 
 [rosbag2_serialization]: https://github.com/ros2/rosbag2#storage-format-plugin-architecture
+
 [sqlite]: https://en.wikipedia.org/wiki/SQLite
+
 [cdr]: https://en.wikipedia.org/wiki/Common_Data_Representation
+
 [sqlite3]: https://docs.python.org/3/library/sqlite3.html
 
-
-
-
-
-
+[MCAP]: https://mcap.dev/
 
