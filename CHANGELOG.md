@@ -13,3 +13,12 @@
   the latest ROS2 defaults. In particular, mcap storage.
 * Updated defaults and documentation.
 
+# Version 1.0.2
+
+11/13/23
+
+* Cleaned-up the README and adjusted references to the storage format.
+* Added a version of the example in Markdown format (doc/markdown/example), 
+  with doctests.
+* Updated the README for the new version of the example.
+
